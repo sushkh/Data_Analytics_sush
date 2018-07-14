@@ -1,0 +1,1 @@
+flume-ng agent --conf-file twitter_test.conf --name TwitterAgent --conf $FLUME_HOME/conf -Dflume.root.logger=INFO,console -Dtwitter4j.streamBaseURL=https://stream.twitter.com/1.1/
