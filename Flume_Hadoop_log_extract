@@ -1,0 +1,19 @@
+agent1.sources = seqGenSrc
+agent1.channels = memoryChannel
+agent1.sinks = hdfs1
+# For each one of the sources, the type is defined
+agent1.sources.seqGenSrc.type = seq
+# The channel can be defined as follows.
+agent1.sources.seqGenSrc.channels = memoryChannel
+# Each sink’s type must be defined
+#agent.sinks.loggerSink.type = logger
+agent1.sinks.hdfs1.type = hdfs
+agent1.sinks.hdfs1.hdfs.path = /user/cloudera/ff
+agent1.sinks.hdfs1.hdfs.fileType = DataStream
+agent1.sinks.hdfs1.hdfs.file.Prefix = syslogfiles-
+agent1.sinks.hdfs1.hdfs.round = true
+agent1.sinks.hdfs1.hdfs.roundValue = 10
+agent1.sinks.hdfs1.hdfs.roundUnit = second
+agent1.channels.memoryChannel.type = memory
+#Specify the channel the sink should use
+agent1.sinks.hdfs1.channel = memoryChannel
