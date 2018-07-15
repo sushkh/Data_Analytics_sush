@@ -1,0 +1,4 @@
+##Copy all tables of Retail_db database to HDFS (at given location).
+sqoop import-all-tables -m 1 --connect jdbc:mysql://quickstart:3306/retail_db --username=root --password=cloudera --compression-codec=snappy --as-avrodatafile --warehouse-dir=/user/hive/warehouse
+
+#
