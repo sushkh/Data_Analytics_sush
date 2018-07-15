@@ -1,4 +1,10 @@
 ##Copy all tables of Retail_db database to HDFS (at given location).
 sqoop import-all-tables -m 1 --connect jdbc:mysql://quickstart:3306/retail_db --username=root --password=cloudera --compression-codec=snappy --as-avrodatafile --warehouse-dir=/user/hive/warehouse
 
-#
+#1.copying data of the emp table to HDFS which was created by us.
+sqoop import --connect jdbc:mysql://quickstart:3306/retail_db --username=root --password=cloudera --table emp --target-dir=/user/cloudera/sqoop_CS 
+#2.Now incremental update the data.
+sqoop import --connect jdbc:mysql://quickstart:3306/retail_db --username=root --password=cloudera --table emp --target-dir=/user/cloudera/sqoop_CS --incremental append --check-column id --last-value 5
+
+#importing data to Hive via sqoop
+sqoop import-all-tables --connect jdbc:mysql://quickstart:3306/retail_db --username=root --password=cloudera --exclude-tables test,dummy --hive-import -m2
